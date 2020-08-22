@@ -1,0 +1,46 @@
+---
+title: "Peer-graded Assignment: Course Project: Shiny Application and Reproducible Pitch"
+author: "N Vinod Kumar"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+This application is a Restaurant Dashboard, which allows the users to View the various Menu categories and Menu Items of a Restaurant. The users can be able to see the no of categories and Menu Items available under a selected category.
+
+## UI
+
+- Slider Input - For selecting the Price
+- Select Input - for selecting the Menu Categories
+
+There are 3 tabs in the Application
+1. Table
+2. Plot
+3. Help
+
+## Resturant Data Set Used for this Project
+
+```{r cars, echo = TRUE}
+load(file = "resturantdata.rda")
+summary(resturantdata)
+library(dplyr)
+library(plotly)
+```
+
+## Slide with Plot
+
+```{r pressure, echo = FALSE}
+categorydata <- resturantdata %>% group_by(MenuCategory) %>% summarise(Items = n())
+        plot_ly(categorydata, x = ~MenuCategory, y = ~Items, type = 'bar', color=~MenuCategory) %>% layout(barmode="overlay",
+                    title = "Menu Category",                                       
+                       xaxis = list(title = "Menu Category", tickangle = 90),
+                   yaxis = list(title = "No. of Items available"))
+```
+
+## Thanks
