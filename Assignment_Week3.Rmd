@@ -1,0 +1,26 @@
+---
+title: "Peer-graded Assignment: R Markdown Presentation & Plotly"
+author: "N Vinod Kumar"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+```
+
+## Dataset used for the plot
+```{r cars, echo = TRUE}
+fig <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, 
+               color = ~Species,mode="markers")
+```
+
+## IRIS
+```{r pressure, echo = FALSE,fig.width=8, fig.height=4}
+fig
+```
+
+## Thank You
